@@ -1,0 +1,85 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{% static 'logo.png' %}" type="image/x-icon">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'style1.css' %}" >
+</head>
+<body>
+    <header class="header">
+        <div id="menu-btn" class="fas fa-bars"></div>
+        <a href="{% url 'home' %}" class="logo"> <span>kech</span>insurances </a>
+        <nav class="navbar">
+            <a href="{% url 'home' %}">Home</a>  
+            <a href="{% url 'contact_us' %}">contact</a>
+        </nav>
+    </header>
+    {% if page == 'login' %}
+    <section class="home" id="home">
+        <h3 style="text-transform:lowercase; font-size:50px; padding:3px; margin: 5px; font-family:arial;">login</h3>
+        <br>
+<h2>    <form method="POST" action="">
+         <div>
+            <label> Email &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;</label>
+            <input id="username" name="username" type="username" placeholder="username" />
+            {% csrf_token %}
+        </div>
+
+        <br>
+        <div class=" form__group">
+            <label for="password"> Password &nbsp;&nbsp; </label>
+            <input id="password" name="password" type="password" placeholder="password" />
+            {% csrf_token %}
+         </div>
+         <br>
+         <button type="submit" value="submit" class="btn btn--main" > Connexion </button>
+</h2>
+     </form>
+        <div class="auth__action">
+            <br><br>
+            <p style="font-size:20px">Haven't signed up yet?</p>
+            <br>
+            <a href="{% url 'registrationPage' %}" class="btn btn--link">Sign Up</a>
+          </div>
+
+    </section>
+
+    {% else %}
+
+    <section class="home" id="home">
+        <h3 style="text-transform:lowercase; font-size:50px; padding:3px; margin: 5px; font-family:arial;">Register</h3>
+        <br>
+<h2>
+    <form method="post" action="" class="form">
+            {% for field in form %}
+            <div class="">
+              <label for="room_name">{{field.label}}</label>
+              {{field}}
+              {% csrf_token %}
+            </div>
+            <br>
+            {% endfor %}
+         <br>
+         <button class="btn btn--main" type="submit" value="Submit"> Register </button>
+    </form>
+</h2>
+
+        <div class="auth__action">
+            <br><br>
+            <p style="font-size:20px">Already have an account?</p>
+            <a href="{% url 'loginPage' %}" class="btn btn--link">login</a>
+          </div>
+    </section>
+
+
+    {% endif %}
+
+{%endblock %}
+</body>
+</html>

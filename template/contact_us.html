@@ -1,0 +1,74 @@
+{% load static %}
+{% block content %}
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{% static 'logo.png' %}" type="image/x-icon">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'style1.css' %}" >
+    <title>Contact us</title>
+
+</head>
+<body>
+<header class="header">
+    <div id="menu-btn" class="fas fa-bars"></div>
+    <a href="{% url 'home' %}" class="logo"> <span>kech</span>insurances </a>
+     {% if request.user.is_authenticated %}
+     <b style="color:blue;">Author:&nbsp;@<a href="">{{request.user}}</a></b>
+    {% endif %}
+    <nav class="navbar">
+        <a href="{% url 'home' %}">Home</a>  
+        {% if request.user.is_authenticated %}
+        <a href="{% url 'allclient' %}">Client liste</a>
+        <a href="{% url 'add_Client' %}">add Client</a>
+        {% else %}
+        <a href="{% url 'contact_us' %}">contact</a>
+        {% endif %}
+    </nav>
+
+    <div id="login-btn">
+        {% if request.user.is_authenticated %} 
+        <a href="{% url 'logoutPage' %}"> <button class="btn"> logout </button> </a>
+        {% else %}
+        <a href="{% url 'loginPage' %}"> <button class="btn">login</button> </a>
+        {% endif %} 
+    </div>
+
+</header> 
+<section class="home" id="home">
+<section class="footer" id="footer">
+    <div class="box-container">
+
+        <div class="box">
+            <h3>our branches</h3>
+            <a href="#"> <i class="fas fa-map-marker-alt"></i> india </a>
+            <a href="#"> <i class="fas fa-map-marker-alt"></i> japan </a>
+            <a href="#"> <i class="fas fa-map-marker-alt"></i> france </a>
+            <a href="#"> <i class="fas fa-map-marker-alt"></i> russia </a>
+            <a href="#"> <i class="fas fa-map-marker-alt"></i> USA </a>
+        </div>
+        <div class="box">
+            <h3>contact info</h3>
+            <a href="#"> <i class="fas fa-phone"></i> 06-66-66-66-66</a>
+            <a href="#"> <i class="fas fa-envelope"></i> kechinsurrances@gmail.com </a>
+            
+        </div>
+        <div class="box">
+            <h3>contact info</h3>
+            <a href="#"> <i class="fab fa-facebook-f"></i> facebook </a>
+            <a href="#"> <i class="fab fa-twitter"></i> twitter </a>
+            <a href="#"> <i class="fab fa-instagram"></i> instagram </a>
+            <a href="#"> <i class="fab fa-linkedin"></i> linkedin </a>
+            <a href="#"> <i class="fab fa-pinterest"></i> pinterest </a>
+        </div>
+    </div>
+    <div class="credit"> Created by Aboulouane Med Khalil & Ait Hammou Badr | all rights reserved </div>
+</section>
+</section>
+</body>
+</html>
+
+{% endblock content%} 

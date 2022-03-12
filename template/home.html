@@ -1,0 +1,116 @@
+{% load static %}
+{% block content %}
+<!-- I'am awesome -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" href="{% static 'logo.png' %}" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="{% static 'style1.css' %}" >
+    <title>Home</title>
+</head>
+<body> 
+<header class="header">
+    <div id="menu-btn" class="fas fa-bars"></div>
+    <a href="{% url 'home' %}" class="logo"> <span>kech</span>insurances </a>
+     {% if request.user.is_authenticated %}
+     <b style="color:blue;">Author:&nbsp;@<a href="">{{request.user}}</a></b>
+    {% endif %}
+    <nav class="navbar">
+        <a href="{% url 'home' %}">Home</a>  
+        {% if request.user.is_authenticated %}
+        <a href="{% url 'allclient' %}">Client liste</a>
+        <a href="{% url 'add_Client' %}">add Client</a>
+        {% else %}
+        <a href="{% url 'contact_us' %}">contact</a>
+        {% endif %}
+    </nav>
+
+    <div id="login-btn">
+        {% if request.user.is_authenticated %} 
+        <a href="{% url 'logoutPage' %}"> <button class="btn"> logout </button> </a>
+        {% else %}
+        <a href="{% url 'loginPage' %}"> <button class="btn">login</button> </a>
+        {% endif %} 
+    </div>
+
+</header> 
+
+<section class="home" id="home">
+
+    <h3 data-speed="-2" class="home-parallax" style="font-size:40px;">protect your car</h3>
+
+    <img data-speed="5" class="home-parallax" src="{% static 'car2.png' %}" alt="">
+
+</section>
+
+<section class="icons-container">
+
+    <div class="icons">
+        <i class="fas fa-home"></i>
+        <div class="content">
+            <h3>150+</h3>
+            <p>branches</p>
+        </div>
+    </div>
+
+    <div class="icons">
+        <i class="fas fa-car"></i>
+        <div class="content">
+            <h3>4770+</h3>
+            <p>fixed cars</p>
+        </div>
+    </div>
+
+    <div class="icons">
+        <i class="fas fa-users"></i>
+        <div class="content">
+            <h3>320+</h3>
+            <p>happy clients</p>
+        </div>
+    </div>
+</section>
+
+<section class="vehicles" id="vehicles">
+<section class="services" id="services">
+
+    <h1 class="heading"> our <span>services</span> </h1>
+
+    <div class="box-container">
+
+        <div class="box">
+            <i class="fas fa-car"></i>
+            <h3>frame fixing</h3>
+            <p>if you had any accident we can assure you that the car will be back better than as it was</p>
+            <a href="#" class="btn"> read more</a>
+        </div>
+
+        <div class="box">
+            <i class="fas fa-tools"></i>
+            <h3>parts repair</h3>
+            <p>if any related parts to the engine we can change them for free.</p>
+            <a href="#" class="btn"> read more</a>
+        </div>
+
+        <div class="box">
+            <i class="fas fa-car-crash"></i>
+            <h3>car change</h3>
+            <p>when te car is very damaged we can offer you a good deal on a new one (50% discount).</p>
+            <a href="#" class="btn"> read more</a>
+        </div>       
+    </div>
+
+</section>
+
+<script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+
+<script src="{% static 'script1.js' %}"></script>
+</body>
+</html>
+{% endblock content %}

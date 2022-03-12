@@ -1,0 +1,71 @@
+{% load static %}
+<!-- I'am awesome -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{% static 'logo.png' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'style1.css' %}" >
+    <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}" >
+    <title>Clients list</title>
+</head>
+
+<body>
+  <header class="header">
+    <div id="menu-btn" class="fas fa-bars"></div>
+    <a href="{% url 'home' %}" class="logo"> <span>kech</span>insurances </a>
+     <b style="color:blue;">Author:&nbsp;@<a href="">{{request.user}}</a></b>
+    <nav class="navbar">
+        <a href="{% url 'home' %}">Home</a>  
+        <a href="{% url 'add_Client' %}"> ajouter un clients </a>
+    </nav>
+
+    <div id="login-btn">
+        <a href="{% url 'logoutPage' %}"> <button class="btn"> logout </button> </a> 
+    </div>
+
+</header> 
+<br><br><br><br><br><br>
+<body>
+        <div>
+          <h3>
+          <hr>          
+               <table class="table w-100 ">
+                <thead class="table-dark">
+                  <tr>
+                    <th scope="col">&nbsp;&nbsp;#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">&nbsp;&nbsp; Date &nbsp; Validation</th>
+                    <th scope="col">&nbsp; &nbsp;Phone</th>
+                    <th scope="col">Contrat</th>
+                    <th scope="col">Update</th>
+                    <th scope="col">Delete</th>
+                    <th scope="col">Agent</th>
+                  </tr>
+                </thead>
+                {% for i in clients %}
+                <tbody>
+                  <tr>
+                    <th scope="row">  &nbsp; <a href="/client/{{i.id}}">{{i.id}} </a> </th>
+                    <td>    {{i.nom}}  </td>
+                    <td>   {{i.date_end}}   </td>
+                    <td>     {{i.telephone}}  </td>
+                    <td>  {{i.type_contrat}}  </td>
+                    {% if request.user == i.host %} 
+                    <td><a href="{% url 'update_Client' i.id %}">Update</a>&nbsp;&nbsp;&nbsp; </td>
+                    <td> <a href="{% url 'delete_Client' i.id %}">Delete</a>&nbsp;&nbsp;&nbsp;</td>
+                    {% else %}
+                    <td>[Not-allowed]</td>
+                    <td>[Not-allowed]</td>
+                    {% endif %} 
+                    <td>   {{i.host}}  </td>
+                  </tr>
+                </tbody>
+            {% endfor %}
+          </table>
+          </h3>
+    </div>
+  </body>
+</html>

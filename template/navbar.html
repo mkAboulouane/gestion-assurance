@@ -1,0 +1,38 @@
+{% extends 'home.html'%}
+{% load static %}  
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{% static 'logo.png' %}" type="image/x-icon">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'style1.css' %}" >
+
+</head>
+<body> 
+<header class="header">
+    <div id="menu-btn" class="fas fa-bars"></div>
+    <a href="{% url 'home' %}" class="logo"> <span>kech</span>insurances </a>
+     {% if request.user.is_authenticated %}
+     <b style="color:blue;">Author:&nbsp;@<a href="">{{request.user}}</a></b>
+    {% endif %}
+    <nav class="navbar">
+        <a href="{% url 'home' %}">Home</a>  
+        {% if request.user.is_authenticated %}
+        <a href="{% url 'allclient' %}">Client liste</a>
+        <a href="{% url 'add_Client' %}">add Client</a>
+        {% else %}
+        <a href="{% url 'contact_us' %}">contact</a>
+        {% endif %}
+    </nav>
+
+    <div id="login-btn">
+        {% if request.user.is_authenticated %} 
+        <a href="{% url 'logoutPage' %}"> <button class="btn"> logout </button> </a>
+        {% else %}
+        <a href="{% url 'loginPage' %}"> <button class="btn">login</button> </a>
+        {% endif %} 
+    </div>
+</header> 
+</body>

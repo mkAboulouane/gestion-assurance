@@ -1,0 +1,10 @@
+<tr>
+  <th scope="col">&nbsp;#</th>
+  <th scope="col">Name</th>
+  <th scope="col">&nbsp;&nbsp; Date &nbsp; Validation</th>
+  <th scope="col">Phone</th>
+  <th scope="col">Contrat</th>
+  <th scope="col">Update</th>
+  <th scope="col">Delete</th>
+  <th scope="col">Agent</th>
+</tr>

@@ -1,0 +1,41 @@
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{% static 'logo.png' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'style1.css' %}" >
+    <title>Delete Client</title>
+</head>
+<body>
+<header class="header">
+    <div id="menu-btn" class="fas fa-bars"></div>
+    <a href="{% url 'home' %}" class="logo"> <span>kech</span>insurances </a>
+    <b style="color:blue;">Author:&nbsp;@<a href="">{{request.user}}</a></b>
+    <nav class="navbar">
+        <a href="{% url 'home' %}">Home</a>  
+        
+        <a href="{{request.META.HTTP_REFERER}}">retour</a>
+    </nav>
+
+    <div id="login-btn">
+        <a href="{% url 'logoutPage' %}"> <button class="btn"> logout </button> </a> 
+    </div>
+</header> 
+<section class="home" id="home">
+<form method="POST" action="" >
+{% csrf_token %}
+<h2 style="font-size:20px; color:red;"> <b style="color:blue;"> @{{request.user}} </b> Are you sure to delete : "{{obj}}" !</h2>
+<input type="submit" value="confirm" class="btn btn--main"/>
+</form>
+</section>
+</body>
+{% endblock %}
+</html>
+
+
+
+                  
